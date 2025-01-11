@@ -1,0 +1,14 @@
+table {
+    border: 1px solid #000;
+    text-align: center;
+    width: 300px;
+}
+
+th,
+td {
+    border: 1px solid #000;
+}
+
+h3 {
+    position: relative;
+}
