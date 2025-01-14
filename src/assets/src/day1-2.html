@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day2</title>
+    <link rel="stylesheet" href="css/day1-2.css">
+</head>
+
+<body>
+    <header>
+        <h3>Day 2</h3>
+    </header>
+    <main>
+        <section class="main">
+            <div id="memosContainer">
+                <div class="memos__input-container">
+                    <input @keyup.enter="memosAdd" type="text" v-model="todoContent" placeholder="Add your memo...">
+                    <button @click="memosAdd">Add</button>
+                </div>
+                <ul class="memos__list">
+                    <li class="memos__list-item" v-for="(item, index) in memos" :key="item.id">
+                        <span>{{index+1}}: {{item.content}}</span>
+                        <button @click="memosDel(item.id)">删除</button>
+                    </li>
+                </ul>
+                <div class="memos__footer" v-show="memos.length > 0">
+                    <span class="memos__count">合计：{{memos.length}}</span>
+                    <button class="memos__clear" @click="memosClear">清空</button>
+                </div>
+            </div>
+        </section>
+        <section id="Instruction__supplement">
+            <div class="instructionContainer">
+                <ul>
+                    <li class="list_item memos__list-item" :class='["memos__list-item"]'>
+                        始终添加 memos__list-item 类
+                    </li>
+                </ul>
+            </div>
+            <div class="compute_variableContainer memos__list-item">
+                <ul class="const_list memos__list">
+                    <li class="memos__list-item" v-for="(item, index) in constList" :key="item.id">
+                        <span>{{index+1}}: {{item.name} {{item.num}}}</span>
+                        <button @click="memosDel(item.id)">删除</button>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+    <footer></footer>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+    <script>
+        new Vue({
+            el: ' #memosContainer',
+            data: {
+                todoContent: "",
+                memos: [],
+
+            },
+            methods: {
+                memosClear() { this.memos = []; },
+                memosAdd() {
+                    if (this.todoContent.trim() === "") { window.alert("请输入备忘事项"); return; }
+                    this.memos.push({ id: +new Date(), content: this.todoContent, }); this.todoContent = "";
+                },
+                memosDel(id) {
+                    this.memos = this.memos.filter(item => item.id !== id);
+                }
+            }
+        });
+
+
+        new Vue({
+            el: "#Instruction__supplement",
+            data: {
+                constList: [
+                    { id: 1, name: "变量1", num: 1 },
+                    { id: 2, name: "变量2", num: 2 },
+                    { id: 3, name: "变量3", num: 3 }
+
+                ]
+            },
+        })
+        Vue.config.devtools = true;
+    </script>
+</body>
+git config --global user.name "zxy"
+git config --global user.email "3409506462@qq.com"
+
+</html>

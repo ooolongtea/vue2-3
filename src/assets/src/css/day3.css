@@ -1,0 +1,133 @@
+:root {
+    --primary-100: #d4eaf7;
+    --primary-200: #b6ccd8;
+    --primary-300: #3b3c3d;
+    --accent-100: #71c4ef;
+    --accent-200: #00668c;
+    --text-100: #1d1c1c;
+    --text-200: #313d44;
+    --bg-100: #fffefb;
+    --bg-200: #f5f4f1;
+    --bg-300: #cccbc8;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--bg-100);
+    color: var(--text-100);
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: var(--primary-200);
+    padding: 20px;
+    text-align: center;
+    color: var(--bg-100);
+    font-size: 1.5em;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.main-container {
+    margin-top: 30px;
+    padding: 40px;
+    background-color: var(--bg-200);
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.input-container {
+    margin-bottom: 30px;
+}
+
+.input-form {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.formcontrol {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--primary-200);
+    flex: 1;
+    max-width: 220px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.btn-primary {
+    background-color: var(--accent-200);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    height: 4.5vh;
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-100);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+    font-size: 16px;
+}
+
+th,
+td {
+    padding: 15px;
+    text-align: center;
+}
+
+th {
+    background-color: var(--primary-100);
+    font-weight: bold;
+    color: var(--text-200);
+}
+
+tbody tr {
+    background-color: var(--bg-100);
+}
+
+tbody tr:nth-child(odd) {
+    background-color: var(--bg-200);
+}
+
+tfoot td {
+    background-color: var(--primary-200);
+    font-weight: bold;
+    color: var(--text-200);
+}
+
+.echarts-box {
+    width: 100%;
+    max-width: 800px;
+    margin: 40px auto;
+    border-radius: 10px;
+    background-color: var(--bg-100);
+}
+
+.meos-container {
+    margin-top: 30px;
+}
+
+a {
+    color: var(--accent-200);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--accent-100);
+}

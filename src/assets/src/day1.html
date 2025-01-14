@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .variable {
+        background-color: blanchedalmond;
+    }
+</style>
+
+<body>
+
+    <div id="app">
+
+        <h3>绑定</h3>
+        <span :title="vbind_title">v-bind 动态修改:
+            <span class="variable">{{vbind_title}}</span>
+        </span>
+        <h3>v-for</h3>
+        <ul>
+            <li v-for="(item,index) in list" :key="item.id">
+                <span>name:<span class="variable">{{item.name}}</span></span>
+                <span>level:<span class="variable">{{item.level}}</span></span>
+                <button @click="del(item.id)">删除</button>
+            </li>
+        </ul>
+
+        <h3>更改count</h3>
+        <button @click="count--">-</button>
+        <span><span class="variable">{{count}}</span></span>
+        <button @click="compute()">+</button>
+
+        <h3>双向数据绑定</h3>
+        账户:<input type="text" v-model="username"></br>
+        密码:<input typr="password" v-model="password"></br>
+        <button @click="login">Login</button>
+        <button @click="reset">Reset</button>
+    </div>
+
+</body>
+<script src="../js/vue.js"></script>
+
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            count: 0,
+            vbind_title: "title1",
+            list: [
+                { id: 1, name: '数据1', level: 1 },
+                { id: 2, name: '数据2', level: 2 },
+                { id: 3, name: '数据3', level: 3 },
+            ],
+            username: "",
+            password: "",
+        },
+        methods: {
+            compute() {
+                this.count++
+            },
+            del(id) {
+                this.list = this.list.filter(item => item.id != id)
+            },
+            login() {
+                console.log(this.username, this.password)
+            },
+            reset() {
+                this.username = ""
+                this.password = ""
+            }
+        }
+    })
+
+</script>
+
+</html>

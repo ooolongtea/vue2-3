@@ -1,0 +1,134 @@
+:root {
+    --primary-100: #d4eaf7;
+    --primary-200: #b6ccd8;
+    --primary-300: #3b3c3d;
+    --accent-100: #71c4ef;
+    --accent-200: #00668c;
+    --text-100: #1d1c1c;
+    --text-200: #313d44;
+    --bg-100: #fffefb;
+    --bg-200: #f5f4f1;
+    --bg-300: #cccbc8;
+}
+
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--bg-100);
+    margin: 0;
+    padding: 0;
+    color: var(--text-100);
+}
+
+header {
+    background-color: var(--primary-100);
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header h3 {
+    color: var(--primary-300);
+    font-size: 24px;
+}
+
+main {
+    padding: 20px;
+}
+
+.memos__input-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.memos__input-container input {
+    width: 75%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid var(--primary-200);
+    border-radius: 5px;
+    background-color: var(--bg-200);
+    color: var(--text-200);
+}
+
+.memos__input-container button {
+    width: 20%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--accent-100);
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.memos__input-container button:hover {
+    background-color: var(--accent-200);
+}
+
+.memos__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.memos__list-item {
+    background-color: var(--bg-200);
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.memos__list-item span {
+    color: var(--text-100);
+    font-size: 16px;
+}
+
+.memos__list-item button {
+    padding: 5px 10px;
+    font-size: 14px;
+    border: none;
+    background-color: var(--accent-200);
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.memos__list-item button:hover {
+    background-color: #004d6b;
+}
+
+.memos__footer {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.memos__count {
+    font-size: 15px;
+    color: var(--text-200);
+    margin: 10px 20px;
+}
+
+.memos__clear {
+    padding: 10px 15px;
+    font-size: 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--accent-200);
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.memos__clear:hover {
+    background-color: #004d6b;
+}

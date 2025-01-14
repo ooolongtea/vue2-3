@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gift List</title>
+    <link rel="stylesheet" type="text/css" href="css/day2.css">
+</head>
+
+<body>
+    <header class="header">
+
+    </header>
+    <main class="main-container">
+        <section class="content-section">
+            <div id="app" class="gift-list">
+                <h3 class="gift-list__title">礼物清单</h3>
+                <table class="gift-list__table">
+                    <thead>
+                        <tr>
+                            <th class="gift-list__table-header">名字</th>
+                            <th class="gift-list__table-header">数量</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(item, index) in list" :key="item.id">
+                            <td class="gift-list__table-data">{{ item.name }}</td>
+                            <td class="gift-list__table-data">{{ item.num }}个</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="gift-list__total">礼物总数：{{ totalCount }} 个</p>
+
+                <p class="interpretation">computed属性完整写法 get() & set()</p>
+                姓：<input type="text" v-model="firstName" class="input-field"> +
+                名：<input type="text" v-model="lastName" class="input-field"> =
+                <span class="full-name">{{ fullName }}</span><br><br>
+                <button @click="changenName" class="button">改名卡</button>
+            </div>
+
+            <div class="translationContainer" id="translation">
+                <div class="query">
+                    <span>翻译成的语言：</span>
+                    <select v-model="obj.lang">
+                        <option value="italy">意大利</option>
+                        <option value="english">英语</option>
+                        <option value="german">德语</option>
+                    </select>
+                </div>
+
+                <!-- 翻译框 -->
+                <div class="box">
+                    <div class="input-wrap">
+                        <textarea v-model="obj.words" class="input-textarea"></textarea>
+                        <span><i>⌨️</i>文档翻译</span>
+                    </div>
+                    <div class="output-wrap">
+                        <div class="transbox">{{relsult}}</div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <!-- Footer content -->
+    </footer>
+
+    <script src="js/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                list: [
+                    { id: 1, name: '篮球', num: 1 },
+                    { id: 2, name: '玩具', num: 2 },
+                    { id: 3, name: '铅笔', num: 5 },
+                ],
+                firstName: '刘',
+                lastName: '备',
+            },
+            methods: {
+                changenName() {
+                    this.fullName = "any";
+                }
+            },
+            computed: {
+                totalCount() {
+                    let total = this.list.reduce((sum, item) => sum + item.num, 0);
+                    return total;
+                },
+                fullName: {
+                    get() {
+                        return this.firstName + this.lastName;
+                    },
+                    set(value) {
+                        this.firstName = value.slice(0, 1);
+                        this.lastName = value.slice(1);
+                    }
+                }
+            },
+            watch: {
+
+            }
+        });
+
+        const translation = new Vue({
+            el: '#translation',
+            data: {
+                obj: {
+                    words: "sadsad",
+                    lang: "italy"
+                },
+                // words: "",
+                relsult: "",
+            },
+            watch: {
+                //该方法在数据变化时执行
+                // words(newValue, oldValue) {
+                //     clearTimeout(this.timer)
+                //     this.timer = setTimeout(async () => {
+                //         const rel = await axios({
+                //             url: 'https://applet-base-api-t.itheima.net/api/translate',
+                //             params: {
+                //                 words: newValue
+                //             }
+                //         })
+                //         this.relsult = rel.data.data
+
+                //     }, 300)
+                // },
+                //如果是对象属性加''
+                obj: {
+                    deep: true, //深度监视
+                    immediate: true,//立刻执行
+                    handler(newValue) {
+                        clearTimeout(this.timer)
+                        if (!this.obj.words) {
+                            return
+                        }
+                        this.timer = setTimeout(async () => {
+                            const rel = await axios({
+                                url: 'https://applet-base-api-t.itheima.net/api/translate',
+                                params: newValue,
+                            })
+                            this.relsult = rel.data.data
+
+                        }, 300)
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

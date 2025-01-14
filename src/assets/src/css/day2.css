@@ -1,0 +1,174 @@
+/* Theme colors */
+:root {
+    --primary-100: #C7B299;
+    --primary-200: #a9957d;
+    --primary-300: #675640;
+    --accent-100: #A68B5B;
+    --accent-200: #483507;
+    --text-100: #4D4D4D;
+    --text-200: #797979;
+    --bg-100: #fffefb;
+    --bg-200: #f5f4f1;
+    --bg-300: #cccbc8;
+}
+
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-100);
+    color: var(--text-100);
+}
+
+/* Layout */
+.main-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.content-section {
+    background-color: var(--bg-200);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.gift-list__title {
+    font-size: 24px;
+    color: var(--primary-300);
+    margin-bottom: 15px;
+}
+
+.gift-list__table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.gift-list__table-header {
+    background-color: var(--primary-200);
+    color: #fff;
+    padding: 10px;
+    text-align: left;
+}
+
+.gift-list__table-data {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid var(--bg-300);
+}
+
+.gift-list__total {
+    font-size: 16px;
+    color: var(--text-200);
+}
+
+.input-field {
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid var(--primary-200);
+    border-radius: 4px;
+}
+
+.full-name {
+    font-weight: bold;
+    color: var(--accent-100);
+}
+
+.button {
+    background-color: var(--primary-200);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: var(--primary-300);
+}
+
+/* Footer */
+.footer {
+    background-color: var(--primary-100);
+    color: var(--text-100);
+    padding: 10px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+.translation {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 18px;
+}
+
+.quary {
+    margin: 10px 0;
+}
+
+.box {
+    display: flex;
+}
+
+.input-textarea {
+    width: 300px;
+    height: 160px;
+    font-size: 18px;
+    border: 1px solid #dedede;
+    outline: none;
+    resize: none;
+    padding: 10px;
+}
+
+.input-textarea:hover {
+    border: 1px solid #1589f5;
+}
+
+.transbox {
+    width: 300px;
+    height: 160px;
+    background-color: #f0f0f0;
+    padding: 10px;
+    border: none;
+}
+
+.tip-box {
+    width: 300px;
+    height: 25px;
+    line-height: 25px;
+    display: flex;
+}
+
+.tip-box span {
+    flex: 1;
+    text-align: center;
+}
+
+.query span {
+    font-size: 18px;
+}
+
+.input-wrap {
+    position: relative;
+}
+
+.input-wrap span {
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    font-size: 12px;
+}
+
+.input-wrap i {
+    font-size: 20px;
+    font-style: normal;
+}
