@@ -1033,9 +1033,12 @@ v-model其实就是 :value和@input事件的简写
 
 ### 3.代码示例
 
-子组件
+子组件要用`value`属性和`input`事件
+
+因为Vue 的 `v-model` 是一个语法糖，默认绑定 `value` 属性和 `input` 事件。
 
 ```vue
+//        视图绑定数据     数据监听视图修改
 <select :value="value" @change="handleChange">...</select>
 props: {
   value: String
@@ -1047,10 +1050,13 @@ methods: {
 }
 ```
 
-父组件
+父组件可以用v-model
+
+这里的\$event表示事件的原始数据，即触发该事件时传递的参数，\$event就是你通过事件监听器所获取到的那个数据
 
 ```vue
 <BaseSelect v-model="selectId"></BaseSelect>
+<BaseSelect :value="selectId" @input="selectId = $event"
 ```
 
 
@@ -1073,7 +1079,7 @@ methods: {
 
 ### 4.语法
 
-父组件
+父组件 （：属性.sync ="数据名"）
 
 ```vue
 //.sync写法
@@ -1086,7 +1092,7 @@ methods: {
 />
 ```
 
-子组件
+子组件 触发事件必须是（update:传过来的属性名）
 
 ```vue
 props: {
@@ -1213,6 +1219,8 @@ export default {
 
 利用ref 和 $refs 可以用于 获取 dom 元素 或 组件实例
 
+父组件可以隔空直接调用查找到到的组件方法
+
 ### 2.特点：
 
 查找范围 →  当前组件内(更精确稳定)
@@ -1229,6 +1237,7 @@ export default {
 
 ```html
 mounted () {
+  //chartRef是上面的ref属性
   console.log(this.$refs.chartRef)
 }
 ```
@@ -1240,9 +1249,32 @@ mounted () {
 
 
 ### 5.代码示例
+父组件直接使用子组件的`someMethod()`方法
 
+```
+<template>
+  <div>
+    <ChildComponent ref="myChild" />
+    <button @click="callChildMethod">Call Child Method</button>
+  </div>
+</template>
+
+<script>
+import ChildComponent from './ChildComponent.vue';
+export default {
+  components: {
+    ChildComponent,
+  },
+  methods: {
+    callChildMethod() {
+      this.$refs.myChild.someMethod(); // 通过 $refs 访问子组件实例
+    },
+  },
+};
+</script>
+
+```
 App.vue
-
 ```vue
 <template>
   <div class="app">
@@ -1375,6 +1407,8 @@ $nextTick：**等 DOM更新后**,才会触发执行此方法里的函数体
 
 **语法:** this.$nextTick(函数体)
 
+这个箭头函数写在原来的函数里，eg中替换掉this.$refs.inp.focus() 
+
 ```js
 this.$nextTick(() => {
   this.$refs.inp.focus()
@@ -1395,3 +1429,4 @@ this.$nextTick(() => {
 
 
 
+ 

@@ -47,6 +47,8 @@
 
 - 全局注册
 
+  inserted 会在指令所在的元素(el)，被插入到页面中时触发
+
   ```js
   //在main.js中
   Vue.directive('指令名', {
@@ -83,6 +85,14 @@
 inserted:被绑定元素插入父节点时调用的钩子函数
 
 el：使用指令的那个DOM元素
+
+### 5.定理钩子
+
+1. bind：指令第一次绑定到元素时，初始化
+2. inserted：元素被插入父节点时，（**Dom插入后调用一次**）
+3. update：组件更新时（**数据变化时触发，可能在子组件更新前调用**）
+4. componentUpdated：组件及子组件更新完成后（**数据变化且DOM更新后调用**）
+5. unbind：指令与元素解绑时（**元素销毁时调用一次**）
 
 
 
@@ -324,6 +334,18 @@ export default {
 </style>
 ```
 
+使用v-if 和 :class的写法：
+
+```html
+<template>
+  <div id="app">
+    <div id="data-container" :class="{ loading: isLoading }">
+      <p v-if="!isLoading">{{ data }}</p>
+    </div>
+  </div>
+</template>
+```
+
 
 
 ## 五、插槽-默认插槽
@@ -559,10 +581,12 @@ body {
 - template配合v-slot:名字来分发对应标签
 
   ![68241341192](assets/1682413411921.png)
+  
+  如果不写名字，会传到所有默认插槽
 
 ### 3.v-slot的简写
 
-v-slot写起来太长，vue给我们提供一个简单写法 **v-slot —> #**
+v-slot写起来太长，vue给我们提供一个简单写法 **v-slot 缩写为 #**
 
 ### 4.总结
 
@@ -594,16 +618,20 @@ v-slot写起来太长，vue给我们提供一个简单写法 **v-slot —> #**
 
 ### 4.使用步骤
 
-1. 给 slot 标签, 以 添加属性的方式传值
+1. (子组件)给 slot 标签, 以 添加属性的方式传值
 
    ```vue
    <slot :id="item.id" msg="测试文本"></slot>
+   <!-- 传对象 -->
+   <slot :row="item" msg="测试文本"></slot>
    ```
 
 2. 所有添加的属性, 都会被收集到一个对象中
 
    ```vue
    { id: 3, msg: '测试文本' }
+   <!-- 传对象 -->
+   row: { id:3, name: 'zzz', age: 19 }
    ```
 
 3. 在template中, 通过  ` #插槽名= "obj"` 接收，默认插槽名为 default
@@ -612,6 +640,13 @@ v-slot写起来太长，vue给我们提供一个简单写法 **v-slot —> #**
    <MyTable :list="list">
      <template #default="obj">
        <button @click="del(obj.id)">删除</button>
+     </template>
+   </MyTable>
+   
+   <!-- 传对象 -->
+   <MyTable :list="list">
+     <template #default="obj">
+       <button @click="del(obj.row.id)">删除</button>
      </template>
    </MyTable>
    ```
@@ -1448,7 +1483,7 @@ Vue 官方的一个路由插件，是一个第三方包
      render: h => h(App),
      router:router
    }).$mount('#app')
-
+   
    ```
 
 

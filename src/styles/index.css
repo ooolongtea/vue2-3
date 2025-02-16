@@ -19,19 +19,14 @@ body {
     padding: 0;
 }
 
-header {
+.header {
     background-color: var(--primary-200);
-    padding: 25px 0;
+    padding: 20px;
     text-align: center;
     color: var(--bg-100);
-    font-size: 1em;
+    font-size: 1.5em;
     font-weight: bold;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-header .subtitle {
-    color: var(--text-200);
-    font-size: 1.1em;
 }
 
 .main-container {
@@ -66,18 +61,18 @@ header .subtitle {
     margin-bottom: 20px;
 }
 
-.btn-primary {
+.input-form .btn-primary {
     background-color: var(--accent-200);
     color: white;
     border: none;
-    padding: 12px 25px;
+    padding: 5px 25px;
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     height: 4.5vh;
 }
 
-.btn-primary:hover {
+.input-form .btn-primary:hover {
     background-color: var(--accent-100);
 }
 
@@ -137,15 +132,16 @@ a:hover {
     color: var(--accent-100);
 }
 
-footer {
-    background-color: var(--primary-200);
-    padding: 20px 0;
-    color: var(--bg-100);
-    text-align: center;
-    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+.footer-container {
+    width: 100%;
 }
 
-footer p {
-    font-size: 0.9em;
-    margin: 0;
+.footer div {
+    color: var(--text-200);
+    font-weight: bold;
+    font-size: 2vb;
+    padding: 5px;
+    text-align: center;
+    background-color: var(--bg-300);
+    width: 100%;
 }
